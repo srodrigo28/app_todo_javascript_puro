@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <title>form :: 02</title>
+</head>
+<body>
+    <div class="container">
+        <form id="register">
+            <div class="row table-02">
+                <h2>Calculo :: Combustivel</h2>
+                <div class="informacoes" id="table1">
+                   
+                    <p><span class="paragraf"> Esse</span> aplicativo faz calculo de um valor estimado de km,
+                        mês ou dia passando o valor estimado a gastar. Precisa passar as seguintes informações:</p>
+                    <p> <span class="paragraf">Como </span> funciona Valor do Combustivel, você precisa saber ou tentar uma estimativa 
+                        Média que seu veiculo  caso não tenha certeza pode fazer estimação custuma fazer, 
+                        Quantos Quilômetros deseja rodar.</p>
+                </div>
+                
+            </div>
+            <button id="btn1" class=" btn btn-success">Detalhes</button>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label>Preço Lt:</label>
+                    <input type="text" class="form-control" maxlength="2" id="precoCombustivel">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Km média:</label>
+                    <input type="text" class="form-control" maxlength="2" id="kmMedia">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Km a Rodar:</label>
+                    <input type="text" class="form-control" maxlength="2" id="kmEstimado">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Listros Aprox.:</label>
+                    <input type="text" class="form-control" disabled id="litrosT">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Total Pagar:</label>
+                    <input type="text" class="form-control" disabled id="result">
+                </div>
+            </div>
+            
+            <button onclick="calc()" class="btn btn-primary">Calcular</button>
+        </form>
+          <div class="table-responsive-sm">
+            <div class="informacoes" id="table2">
+            <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">N. Ordem</th>
+                    <th scope="col">Álcool/Gasolina</th>
+                    <th scope="col">R$ Combustivel</th>
+                    <th scope="col">Km Média</th>
+                    <th scope="col">Km Rodar</th>
+                    <th scope="col">Lt. Estimado</th>
+                    <th scope="col">Total a Pagar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Gol 1.6</th>
+                    <th>Álcool</th>
+                    <td>R$ 2.59</td>
+                    <td>8</td>
+                    <td>100km</td>
+                    <td>13 litros</td>
+                    <td>R$ 32.38</td>
+                  </tr>
+                  <tr>
+                    <th>Gol 1.6</th>
+                    <th>Gasolina</th>
+                    <td>R$ 2.59</td>
+                    <td>12</td>
+                    <td>100km</td>
+                    <td>8.3 litros</td>
+                    <td>R$ 21.58</td>
+                  </tr>
+                  <tr>
+                    <th>Grand Siena 1.6</th>
+                    <th>Álcool</th>
+                    <td>R$ 2.59</td>
+                    <td>7</td>
+                    <td>100km</td>
+                    <td>14 litros</td>
+                    <td>R$ 37.00</td>
+                  </tr>
+                  <tr>
+                    <th>Grand Siena 1.6</th>
+                    <th>Gasolina</th>
+                    <td>R$ 2.59</td>
+                    <td>11</td>
+                    <td>100km</td>
+                    <td>9.1 litros</td>
+                    <td>R$ 23.55</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+        </div> 
+        <button id="btn2" class=" btn btn-success">Históricos</button>
+    </div>
+    <style>
+        body{ width: 100%; }
+        form{
+          background-color: tomato !important;
+          padding-left: 10px;
+          height: auto;
+        }
+        h2{ text-align:center; }
+        p{text-align: justify; font-size: 20px;}
+        label{ font-weight: bold; font-size: 20px;}
+        .container{ width: 100% !important; 
+                    border-radius:  20px 0 20px 0;
+                    -webkit-box-shadow: 25px 25px 34px 8px rgba(0,0,0,0.75);
+                    -moz-box-shadow: 25px 25px 34px 8px rgba(0,0,0,0.75);
+                    box-shadow: 25px 25px 34px 8px rgba(0,0,0,0.75);
+        }
+        .text-right{  text-align: right; font-size: 1.5rem; margin-left: 20px;  }
+        .informacoes{ width: 95%; margin:20px;   }
+        .paragraf{ margin-top: 30px ; margin-left: 60px;    }
+        .table{ margin-top: 20px !important; font-weight: bold;  }
+        .form-row{ width: 100%; }
+        .form-control{ width: 100%; }
+        .table{ font-size: 12px !important; }   /** formantando tabela */
+        #register{ width: 100%; }
+        /** Break Points */
+        /* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+    </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(() => {
+            $('#btn1').on('click', () => {
+                $('#table1').toggle(2000) //$('#div1').toggle('slow')
+            })
+            $('#btn2').on('click', () => {
+                $('#table2').toggle(2000)
+            })
+        })
+    </script>
+    <script>
+      /** Copo Lógico onde trata as funções calculo
+       *
+      */
+      $('#register :button').click(function(event){
+        event.preventDefault();
+      })
+        function calc(){
+            let campo1 = document.getElementById('precoCombustivel').value;
+            let campo2 = document.getElementById('kmMedia').value;
+            let campo3 = document.getElementById('kmEstimado').value;
+            let campo4 = document.getElementById('litrosT').value;
+
+             /** Validar campos*/
+             if($('#precoCombustivel' && '#kmMedia' && '#kmEstimado' ).val() == ""){
+              alert("Por favlor preencher todos campos")
+            }else if($('#kmMedia').val() > 16 ){
+              alert("Tá cendo Guinchado???")
+            }else{
+              let totalKm = campo3 / campo2
+              let totalPreco = campo1 * totalKm
+              document.getElementById('litrosT').value = totalKm.toFixed(2)
+              document.getElementById('result').value = 'R$ ' + totalPreco.toFixed(2)
+             }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Beta :: App</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
+   
+  
+</head>
+<body>
+    <div class="container">
+        <form id="register" action="#">
+            <div class="row table-02">
+                <h2>Calculo :: Combustivel</h2>
+                <div class="informacoes" id="table1">   
+                    <p><span class="paragraf"> Esse</span> aplicativo faz calculo de um valor estimado de km,
+                        mês ou dia passando o valor estimado a gastar. Precisa passar as seguintes informações:</p>
+                    <p> <span class="paragraf">Como </span> funciona Valor do Combustivel, você precisa saber ou tentar uma estimativa 
+                        Média que seu veiculo  caso não tenha certeza pode fazer estimação custuma fazer, 
+                        Quantos Quilômetros deseja rodar.</p>
+                </div>
+            </div>
+            <button id="btn1" class=" btn btn-success">Detalhes</button>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label>Preço Lt:</label>
+                    <input type="text" class="form-control" maxlength="8" id="valorC">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Km média:</label>
+                    <input type="text" class="form-control" maxlength="2" id="kmM">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Km a Rodar:</label>
+                    <input type="text" class="form-control" maxlength="8" id="kmR">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Listros Aprox.:</label>
+                    <input type="text" class="form-control" disabled id="litrosT">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Total Pagar:</label>
+                    <input type="text" class="form-control" disabled id="result">
+                </div>
+            </div>
+            <button onclick="calc()" class="btn btn-primary">Calcular</button>
+        </form>
+          <div class="table-responsive-sm">
+            <div class="informacoes" id="table2">
+            <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">N. Ordem</th>
+                    <th scope="col">Álcool/Gasolina</th>
+                    <th scope="col">R$ Combustivel</th>
+                    <th scope="col">Km Média</th>
+                    <th scope="col">Km Rodar</th>
+                    <th scope="col">Lt. Estimado</th>
+                    <th scope="col">Total a Pagar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Gol 1.6</th>
+                    <th>Álcool</th>
+                    <td>R$ 2.59</td>
+                    <td>8</td>
+                    <td>100km</td>
+                    <td>13 litros</td>
+                    <td>R$ 32.38</td>
+                  </tr>
+                  <tr>
+                    <th>Gol 1.6</th>
+                    <th>Gasolina</th>
+                    <td>R$ 2.59</td>
+                    <td>12</td>
+                    <td>100km</td>
+                    <td>8.3 litros</td>
+                    <td>R$ 21.58</td>
+                  </tr>
+                  <tr>
+                    <th>Grand Siena 1.6</th>
+                    <th>Álcool</th>
+                    <td>R$ 2.59</td>
+                    <td>7</td>
+                    <td>100km</td>
+                    <td>14 litros</td>
+                    <td>R$ 37.00</td>
+                  </tr>
+                  <tr>
+                    <th>Grand Siena 1.6</th>
+                    <th>Gasolina</th>
+                    <td>R$ 2.59</td>
+                    <td>11</td>
+                    <td>100km</td>
+                    <td>9.1 litros</td>
+                    <td>R$ 23.55</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+        </div> 
+        <button id="btn2" class=" btn btn-success">Históricos</button>
+    </div>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/app2.js"></script>
+    <script src="assets/js/jsMasck.js"></script>
+</body>
+</html>

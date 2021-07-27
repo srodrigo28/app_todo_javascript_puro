@@ -1,0 +1,23 @@
+body{ width: 100%;}
+form{
+    background-color: tomato !important;
+    padding-left: 10px;
+    height: auto;
+}
+h2{ text-align:center; }
+p{text-align: justify; font-size: 20px;}
+label{ font-weight: bold; font-size: 20px;}
+.container{ width: 100% !important; 
+            border-radius:  20px 0 20px 0;
+            -webkit-box-shadow: 25px 25px 34px 8px rgba(0,0,0,0.75);
+            -moz-box-shadow: 25px 25px 34px 8px rgba(0,0,0,0.75);
+            box-shadow: 25px 25px 34px 8px rgba(0,0,0,0.75);
+}
+.text-right{  text-align: right; font-size: 1.5rem; margin-left: 20px;  }
+.informacoes{ width: 95%; margin:20px;   }
+.paragraf{ margin-top: 30px ; margin-left: 60px;    }
+.table{ margin-top: 20px !important; font-weight: bold;  }
+.form-row{ width: 100%; }
+.form-control{ width: 100%; }
+.table{ font-size: 12px !important; }   /** formantando tabela */
+#register{ width: 100%; }
