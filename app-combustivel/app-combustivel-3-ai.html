@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Combustível AI</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        p {
+            text-align: justify;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 5px;
+        }
+
+        .btn {
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .results {
+            margin-top: 20px;
+        }
+
+        .toggle-section {
+            display: none;
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h2>Cálculo de Combustível</h2>
+            <p>Este aplicativo ajuda a calcular o valor estimado para rodar com base no preço do combustível, média de consumo e distância desejada.</p>
+        </header>
+
+        <main>
+            <form id="register">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="precoCombustivel">Preço do Combustível (R$/L):</label>
+                        <input type="number" class="form-control" id="precoCombustivel" placeholder="Ex: 5.29" step="0.01" min="0">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="kmMedia">Consumo Médio (Km/L):</label>
+                        <input type="number" class="form-control" id="kmMedia" placeholder="Ex: 12" step="0.1" min="0">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="kmEstimado">Distância Estimada (Km):</label>
+                        <input type="number" class="form-control" id="kmEstimado" placeholder="Ex: 100" min="0">
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-primary" onclick="calc()">Calcular</button>
+            </form>
+
+            <section class="results">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="litrosT">Litros Necessários:</label>
+                        <input type="text" class="form-control" id="litrosT" disabled>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="result">Total Estimado (R$):</label>
+                        <input type="text" class="form-control" id="result" disabled>
+                    </div>
+                </div>
+            </section>
+
+            <section class="table-container">
+                <button type="button" class="btn btn-success" onclick="toggleSection('tableSection')">Mostrar/Esconder Histórico</button>
+                <div id="tableSection" class="toggle-section">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Veículo</th>
+                                <th>Combustível</th>
+                                <th>Preço (R$)</th>
+                                <th>Consumo (Km/L)</th>
+                                <th>Distância (Km)</th>
+                                <th>Litros</th>
+                                <th>Total (R$)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Gol 1.6</td>
+                                <td>Álcool</td>
+                                <td>2.59</td>
+                                <td>8</td>
+                                <td>100</td>
+                                <td>12.5</td>
+                                <td>32.38</td>
+                            </tr>
+                            <tr>
+                                <td>Grand Siena</td>
+                                <td>Gasolina</td>
+                                <td>4.59</td>
+                                <td>10</td>
+                                <td>150</td>
+                                <td>15</td>
+                                <td>68.85</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function calc() {
+            const precoCombustivel = parseFloat(document.getElementById('precoCombustivel').value);
+            const kmMedia = parseFloat(document.getElementById('kmMedia').value);
+            const kmEstimado = parseFloat(document.getElementById('kmEstimado').value);
+
+            if (isNaN(precoCombustivel) || isNaN(kmMedia) || isNaN(kmEstimado)) {
+                alert("Por favor, preencha todos os campos corretamente.");
+                return;
+            }
+
+            if (kmMedia <= 0) {
+                alert("O consumo médio deve ser maior que zero.");
+                return;
+            }
+
+            const litrosNecessarios = kmEstimado / kmMedia;
+            const totalPagar = litrosNecessarios * precoCombustivel;
+
+            document.getElementById('litrosT').value = litrosNecessarios.toFixed(2);
+            document.getElementById('result').value = `R$ ${totalPagar.toFixed(2)}`;
+        }
+
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.style.display = section.style.display === "none" ? "block" : "none";
+        }
+    </script>
+</body>
+</html>

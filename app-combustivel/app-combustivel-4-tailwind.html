@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Combustível</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="container max-w-3xl mx-auto bg-white p-6 rounded-2xl shadow-lg">
+        <header class="text-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-800">Cálculo de Combustível</h2>
+            <p class="text-gray-600">Calcule o custo estimado com base no consumo do veículo e distância.</p>
+        </header>
+
+        <main>
+            <form id="register" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="precoCombustivel" class="block text-gray-700 font-semibold">Preço do Combustível (R$/L):</label>
+                        <input type="number" id="precoCombustivel" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Ex: 5.29" step="0.01" min="0">
+                    </div>
+                    <div>
+                        <label for="kmMedia" class="block text-gray-700 font-semibold">Consumo Médio (Km/L):</label>
+                        <input type="number" id="kmMedia" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Ex: 12" step="0.1" min="0">
+                    </div>
+                    <div>
+                        <label for="kmEstimado" class="block text-gray-700 font-semibold">Distância Estimada (Km):</label>
+                        <input type="number" id="kmEstimado" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Ex: 100" min="0">
+                    </div>
+                </div>
+
+                <button type="button" class="w-full bg-blue-500 text-white py-2 rounded-lg shadow-md hover:bg-blue-600 transition-colors" onclick="calc()">Calcular</button>
+            </form>
+
+            <section class="mt-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="litrosT" class="block text-gray-700 font-semibold">Litros Necessários:</label>
+                        <input type="text" id="litrosT" class="w-full border border-gray-300 rounded-lg p-2 mt-1 bg-gray-100" disabled>
+                    </div>
+                    <div>
+                        <label for="result" class="block text-gray-700 font-semibold">Total Estimado (R$):</label>
+                        <input type="text" id="result" class="w-full border border-gray-300 rounded-lg p-2 mt-1 bg-gray-100" disabled>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mt-8">
+                <button type="button" class="w-full bg-green-500 text-white py-2 rounded-lg shadow-md hover:bg-green-600 transition-colors" onclick="toggleSection('tableSection')">Mostrar/Esconder Histórico</button>
+                <div id="tableSection" class="hidden mt-4">
+                    <table class="w-full border border-gray-200 rounded-lg overflow-hidden">
+                        <thead class="bg-gray-200">
+                            <tr>
+                                <th class="py-2 px-4 text-left text-gray-600">Veículo</th>
+                                <th class="py-2 px-4 text-left text-gray-600">Combustível</th>
+                                <th class="py-2 px-4 text-left text-gray-600">Preço (R$)</th>
+                                <th class="py-2 px-4 text-left text-gray-600">Consumo (Km/L)</th>
+                                <th class="py-2 px-4 text-left text-gray-600">Distância (Km)</th>
+                                <th class="py-2 px-4 text-left text-gray-600">Litros</th>
+                                <th class="py-2 px-4 text-left text-gray-600">Total (R$)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-t">
+                                <td class="py-2 px-4">Gol 1.6</td>
+                                <td class="py-2 px-4">Álcool</td>
+                                <td class="py-2 px-4">2.59</td>
+                                <td class="py-2 px-4">8</td>
+                                <td class="py-2 px-4">100</td>
+                                <td class="py-2 px-4">12.5</td>
+                                <td class="py-2 px-4">32.38</td>
+                            </tr>
+                            <tr class="border-t">
+                                <td class="py-2 px-4">Grand Siena</td>
+                                <td class="py-2 px-4">Gasolina</td>
+                                <td class="py-2 px-4">4.59</td>
+                                <td class="py-2 px-4">10</td>
+                                <td class="py-2 px-4">150</td>
+                                <td class="py-2 px-4">15</td>
+                                <td class="py-2 px-4">68.85</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>
+        function calc() {
+            const precoCombustivel = parseFloat(document.getElementById('precoCombustivel').value);
+            const kmMedia = parseFloat(document.getElementById('kmMedia').value);
+            const kmEstimado = parseFloat(document.getElementById('kmEstimado').value);
+
+            if (isNaN(precoCombustivel) || isNaN(kmMedia) || isNaN(kmEstimado)) {
+                alert("Por favor, preencha todos os campos corretamente.");
+                return;
+            }
+
+            if (kmMedia <= 0) {
+                alert("O consumo médio deve ser maior que zero.");
+                return;
+            }
+
+            const litrosNecessarios = kmEstimado / kmMedia;
+            const totalPagar = litrosNecessarios * precoCombustivel;
+
+            document.getElementById('litrosT').value = litrosNecessarios.toFixed(2);
+            document.getElementById('result').value = `R$ ${totalPagar.toFixed(2)}`;
+        }
+
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
